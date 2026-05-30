@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wisecow-service
+spec:
+  selector:
+    app: wisecow               # Routes traffic to pods with this label
+  ports:
+    - protocol: TCP
+      port: 80                 # Service port (internal cluster)
+      targetPort: 4499         # Pod port (wisecow app)
+      nodePort: 30080          # External port on Minikube node
+  type: NodePort
